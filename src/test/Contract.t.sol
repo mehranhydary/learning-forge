@@ -12,43 +12,31 @@ import "ds-test/test.sol";
 // Import your contract(s)
 import "../Contract.sol";
 
+// Adding a dummy contract to id how the prank cheatcode is used
+contract Foo {
+  function bar() external {
+    require(msg.sender == address(1), "Wrong caller");
+  }
+}
+
+interface Vm { 
+  function prank(address) external;
+}
+
 contract ContractTest is DSTest {
-  // Real:
-  Contract myContract;
+  // Address being passed in hahs of address(bytes20(uint160(uint256(keccak256('hevm cheat code')))))
+  Vm vm = Vm(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
+  Foo foo;
+
   
   function setUp() public {
-    myContract = new Contract();
+    foo = new Foo();
   }
 
-  function testAddOne(uint256 x) public {
-    // Adding an event emitter 
-    emit log_string("Testing testAddOne");
-    assertEq(x + 1, myContract.addOne(x));
+  function testBar() public {
+    // We can use vm.prank to set the address of msg.sender
+    vm.prank(address(1));
+    foo.bar();
   }
 
-  // Starting off: 
-
-  // // This is a special fucntion that will be called before any tests are run
-  // uint a;
-  
-  // function setUp() public {
-  //     a = 10;
-  // }
-  
-  // // Each test you create will be a function
-  // // For the test to work, it must contain the name test (if it was just called example, 
-  // // forge test will not run it)
-  
-  // function testExample() public {
-  //     // assertEq can be found in ds-test/test.sol
-  //     assertEq(a, 10);
-  // }
-
-  // // If I want to create a test that will fail, I can do this (add Fail to the function name)
-  // // May not use this as often because it's kind of weird
-  // function testFailExample() public {
-  //     assertEq(a, 9); // This shows up as a pass
-  // }
-
-  // // Another thing we can do is use a function called "expectRevert"; when that passes, it's ok
 }
