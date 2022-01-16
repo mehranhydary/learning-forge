@@ -5,3 +5,7 @@ I am learning how Foundry (forge and cast) work with this repository. Starting p
 ## Notes:
 
 This is a pretty good baseline for future projects
+
+## Good resources
+
+-   https://github.com/gakonst/foundry/tree/master/forge
