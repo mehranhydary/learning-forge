@@ -12,6 +12,11 @@ import "ds-test/test.sol";
 // Import your contract(s)
 import "../Contract.sol";
 
+// External contracts can be imported (e.g. solmate) 
+// Install it via `forge install rari-capital/solmate`
+// Then solmate will be added to lib and then you can import it
+// e.g. import "solmate/tokens/ERC20.sol";
+
 // Adding a dummy contract to id how the prank cheatcode is used
 contract Foo {
   function bar() external {
