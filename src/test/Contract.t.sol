@@ -23,7 +23,7 @@ contract ContractTest is DSTest {
   function testAddOne(uint256 x) public {
     // Adding an event emitter 
     emit log_string("Testing testAddOne");
-    assertEq(x + 1, myContract.addOne(2));
+    assertEq(x + 1, myContract.addOne(x));
   }
 
   // Starting off: 
