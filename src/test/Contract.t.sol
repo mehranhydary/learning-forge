@@ -16,9 +16,18 @@ contract ContractTest is DSTest {
     function setUp() public {
         a = 10;
     }
+    
     // Each test you create will be a function
+    // For the test to work, it must contain the name test (if it was just called example, 
+    // forge test will not run it)
+    
     function testExample() public {
         // assertEq can be found in ds-test/test.sol
         assertEq(a, 10);
+    }
+
+    // If I want to create a test that will fail, I can do this (add Fail to the function name)
+    function testFailExample() public {
+        assertEq(a, 9); // This shows up as a pass
     }
 }
